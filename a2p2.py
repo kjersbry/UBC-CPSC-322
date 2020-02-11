@@ -1,8 +1,9 @@
 def generateSearchTree():
-    //stuff
+    #stuff
     pass
 
 
 def search():
-    //report solutions
-    //report failing consistency checks
+    #report solutions
+    #report failing consistency checks
+    pass
