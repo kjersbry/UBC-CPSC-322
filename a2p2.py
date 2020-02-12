@@ -141,10 +141,10 @@ def DFS_recursive(values, variable, solutions, failed_checks):
         return (failed_checks, solutions)
 
     values = reset_from(variable + 1, values)
-    if variable < 7: #not reached end
-        variable += 1
-    elif values[variable] < 4: #increment position
+    if values[variable] < 4: #increment at position
         values[variable] += 1
+    elif variable < 7: #not reached end
+        variable += 1
     elif values[0] < 4: #back to A
         values = reset_from(1, values)
         values[0] += 1
