@@ -35,13 +35,44 @@ def reset_from(index, lst):
         lst[i]=0
     return lst
 
-#forslag iter-funksjon:
-#returner false hvis failed check
 
+def varToString(varindex):
+    if varindex==0:
+        return "A"
+    if varindex==1:
+        return "B"
+    if varindex==2:
+        return "C"
+    if varindex==3:
+        return "D"
+    if varindex==4:
+        return "E"
+    if varindex==5:
+        return "F"
+    if varindex==6:
+        return "G"
+    if varindex==7:
+        return "H"
+    else:
+        return "-"
 
+#Each iteration/step in the search
+#returs false if the consistency check failed
+def iter(values, variable, iteration):
+    values = reset_from(variable, values)
+    values[variable] = iteration
+    print(varToString(variable) + "=" + str(iteration), end = ' ')    
+    if not consistent(values):
+        print("failure")
+        return False
+    elif variable == 7: # = H
+        print("solution")
+    return True
+
+#DFS with pruning
 def DFS():
     domain = [1,2,3,4]
-    #variables = [A, B, C, D, E, F, G, H]
+    #values of [A, B, C, D, E, F, G, H]:
     var_values = [0,0,0,0,0,0,0,0]
     solutions = []
     num_fails = 0
@@ -51,84 +82,43 @@ def DFS():
         print(' ')
         print("A=" + str(A), end = ' ')
         for B in domain:
-            var_values = reset_from(1, var_values)
-            var_values[1] = B
-            print("B=" + str(B), end = ' ')    
-            if not consistent(var_values):
-                print("failure")
+            if not iter(var_values, 1, B):
                 num_fails += 1
                 continue
 
             for C in domain:
-                var_values = reset_from(2, var_values)
-                var_values[2] = C
-                print("C=" + str(C), end = ' ')
-                if not consistent(var_values):
-                    print("failure")
+                if not iter(var_values, 2, C):
                     num_fails += 1
                     continue                
 
                 for D in domain:
-                    var_values = reset_from(3, var_values)
-                    var_values[3] = D
-                    print("D=" + str(D), end = ' ')
-                    if not consistent(var_values):
-                        print("failure")
+                    if not iter(var_values, 3, D):
                         num_fails += 1
                         continue
 
                     for E in domain:
-                        var_values = reset_from(4, var_values)
-                        var_values[4] = E
-                        print("E=" + str(E), end = ' ')
-
-                        if not consistent(var_values):
-                            print("failure")
+                        if not iter(var_values, 4, E):
                             num_fails += 1
-                            continue 
+                            continue
 
                         for F in domain:
-                            var_values = reset_from(5, var_values)
-                            var_values[5] = F
-                            print("F=" + str(F), end = ' ')
-                            if not consistent(var_values):
-                                print("failure")
+                            if not iter(var_values, 5, F):
                                 num_fails += 1
-                                continue 
+                                continue
 
                             for G in domain:
-                                var_values = reset_from(6, var_values)
-                                var_values[6] = G
-                                print("G=" + str(G), end = ' ')
-                                if not consistent(var_values):
-                                    print("failure")
+                                if not iter(var_values, 6, G):
                                     num_fails += 1
                                     continue 
 
                                 for H in domain:
-                                    var_values = reset_from(7, var_values)
-                                    var_values[7] = H
-                                    print("H=" + str(H), end = ' ')
-                                    if not consistent(var_values):
-                                        print("failure")
+                                    if not iter(var_values, 7, H):
                                         num_fails += 1
-                                        continue 
+                                        continue
                                     else:
-                                        print("solution")
                                         solutions.append([A, B, C, D, E, F])
-
-    #report solutions
-    #report failing consistency checks
     print("SOLUTIONS: ")
     print(solutions)
     print("FAILED CONSISTENCY CHECKS: " + str(num_fails))
-
-
-
-#def DFS_recursive(values):
-#    if not consistent:
-#        return
-    # do stuff to values
-#    return DFS_recursive(values)
 
 DFS()
