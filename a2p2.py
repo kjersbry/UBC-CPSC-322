@@ -121,4 +121,38 @@ def DFS():
     print(solutions)
     print("FAILED CONSISTENCY CHECKS: " + str(num_fails))
 
-DFS()
+#DFS()
+
+def DFS_recursive(values, variable, solutions, failed_checks):
+#    if not consistent:
+#        return
+    # do stuff to values
+#    return DFS_recursive(values)
+
+    print(varToString(variable) + "=" + str(values[variable]), end = ' ')
+    #Termination:    
+    if not consistent(values):
+        print("failure")
+        failed_checks += 1
+        return (failed_checks, solutions)
+    elif variable == 7 and values[variable] != 0: # = H
+        print("solution")
+        solutions.append(values)
+        return (failed_checks, solutions)
+
+    values = reset_from(variable + 1, values)
+    if variable < 7: #not reached end
+        variable += 1
+    elif values[variable] < 4: #increment position
+        values[variable] += 1
+    elif values[0] < 4: #back to A
+        values = reset_from(1, values)
+        values[0] += 1
+    else: #reached end?
+        print("what")
+        return (failed_checks, solutions)
+    
+    return (DFS_recursive(values, variable, solutions, failed_checks))
+
+
+(failed_checks, solutions) = DFS_recursive([1,0,0,0,0,0,0,0], 0, [], 0)
