@@ -50,12 +50,10 @@ def DFS():
         var_values[0] = A #eller +=1, men da må du gjøre noe med linja over for å ikke overskrive A
         print(' ')
         print("A=" + str(A), end = ' ')
-        #print(var_values)
         for B in domain:
             var_values = reset_from(1, var_values)
             var_values[1] = B
             print("B=" + str(B), end = ' ')    
-            #print(var_values)        
             if not consistent(var_values):
                 print("failure")
                 num_fails += 1
@@ -65,7 +63,6 @@ def DFS():
                 var_values = reset_from(2, var_values)
                 var_values[2] = C
                 print("C=" + str(C), end = ' ')
-                #print(var_values)
                 if not consistent(var_values):
                     print("failure")
                     num_fails += 1
@@ -75,7 +72,6 @@ def DFS():
                     var_values = reset_from(3, var_values)
                     var_values[3] = D
                     print("D=" + str(D), end = ' ')
-                    #print(var_values)
                     if not consistent(var_values):
                         print("failure")
                         num_fails += 1
@@ -85,10 +81,6 @@ def DFS():
                         var_values = reset_from(4, var_values)
                         var_values[4] = E
                         print("E=" + str(E), end = ' ')
-                        #print(var_values)
-                        #if E == 3:
-                        #    return
-
 
                         if not consistent(var_values):
                             print("failure")
@@ -99,7 +91,6 @@ def DFS():
                             var_values = reset_from(5, var_values)
                             var_values[5] = F
                             print("F=" + str(F), end = ' ')
-                            #print(var_values)
                             if not consistent(var_values):
                                 print("failure")
                                 num_fails += 1
@@ -109,7 +100,6 @@ def DFS():
                                 var_values = reset_from(6, var_values)
                                 var_values[6] = G
                                 print("G=" + str(G), end = ' ')
-                                #print(var_values)
                                 if not consistent(var_values):
                                     print("failure")
                                     num_fails += 1
@@ -119,7 +109,6 @@ def DFS():
                                     var_values = reset_from(7, var_values)
                                     var_values[7] = H
                                     print("H=" + str(H), end = ' ')
-                                    #print(var_values)
                                     if not consistent(var_values):
                                         print("failure")
                                         num_fails += 1
